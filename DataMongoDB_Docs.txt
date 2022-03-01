@@ -1,0 +1,9 @@
+User (ID, UserName, HoTen, MatKhau, Anh, Email, DiaChi, SDT, ChucVu)
+
+LoaiMonAn(ID, TenLoaiMonAn)
+
+MonAn (ID, TenMonAn, NgayDang, NoiBat, CongThuc, Anh, LoaiMonAn)
+
+MonAnUserLike (ID, UserName, TenMonAn)
+
+MonAnUserSave (ID, UserName, TenMonAn)
