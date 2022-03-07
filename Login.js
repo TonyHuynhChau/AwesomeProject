@@ -43,14 +43,20 @@ export default function App() {
           <TouchableOpacity style={[styles.buttonContainer, styles.LoginButton]} onPress={() => this.onClickListener('login')}>
           <Text style={styles.LoginText}>Login</Text>
         </TouchableOpacity>
+         <TouchableOpacity style={styles.twitter}> 
+         <Image style={styles.image} source={require("./assets/tw.png")} /> 
+      </TouchableOpacity>
+ <TouchableOpacity style={styles.facebook}> 
+          <Image style={styles.image} source={require("./assets/fb.png")} /> 
+        </TouchableOpacity>
  
       <TouchableOpacity>
         <Text style={styles.Question}>Bạn chưa có tài khoản ?</Text>
       </TouchableOpacity>
-
-       <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} onPress={() => this.onClickListener('sign_up')}>
-        <Text style={styles.SignupText}>Sign Up</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} onPress={() => this.onClickListener('signup')}>
+          <Text style={styles.SignupText}>Sign Up</Text>
+        </TouchableOpacity>
+      
     </View>
   );
 }
@@ -70,16 +76,9 @@ const styles = StyleSheet.create({
   },
  
  inputContainer: {
-      borderBottomColor: '#000000',
-      borderTopColor: '#000000',
-      borderLeftColor: '#000000',
-      borderRightColor: '#000000',
+     borderWidth: 3,
       backgroundColor: '#FFFFFF',
-      borderRadius:10,
-      borderBottomWidth: 1,
-      borderTopWidth: 1,
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
+     borderRadius: 8,
       borderStyle: "solid",
       width:250,
       height:45,
@@ -103,40 +102,26 @@ const styles = StyleSheet.create({
   SignupButton: {
    backgroundColor: "#b41616",
    width: "50%",
-    borderRadius: 10,
     height: 40,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
      borderStyle: "solid",
      borderColor: '#000000',
-      borderBottomColor: '#000000',
-      borderTopColor: '#000000',
-      borderLeftColor: '#000000',
-      borderRightColor: '#000000',
-      borderBottomWidth: 1,
-      borderTopWidth: 1,
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
+      borderWidth: 2,
+      borderRadius: 8,
   },
   LoginButton: {
     backgroundColor: "#b41616",
    width: "50%",
-    borderRadius: 10,
     height: 40,
     borderStyle:"solid",
     borderColor: '#000000',
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10,
-    borderBottomColor: '#000000',
-      borderTopColor: '#000000',
-      borderLeftColor: '#000000',
-      borderRightColor: '#000000',
-      borderBottomWidth: 1,
-      borderTopWidth: 1,
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
+    borderWidth: 2,
+      borderRadius: 8,
   },
   LoginText: {
     color: 'white',
@@ -145,10 +130,12 @@ const styles = StyleSheet.create({
     color: 'white',
   },
    inputIcon:{
-    width:15,
-    height:15,
+    width:30,
+    height:30,
     marginLeft:15,
-    justifyContent: 'center'
+     borderWidth: 2,
+      borderRadius: 2,
+       justifyContent: 'center',
   },
   inputs:{
       height:45,
@@ -156,4 +143,20 @@ const styles = StyleSheet.create({
       borderBottomColor: '#FFFFFF',
       flex:1,
   },
-});
+  twitter: {
+    width: 20, height: 20,
+    marginBottom:20,
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10
+    },
+    facebook: {
+     width: 20, height: 20,
+    marginBottom:20,
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
+      },
+  });
