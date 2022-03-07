@@ -19,32 +19,37 @@ export default function App() {
       <Image style={styles.image} source={require("./assets/logo2.png")} />
  
       <StatusBar style="auto" />
+
+       <TouchableOpacity>
+        <Text style={styles.Word}>LOGIN</Text>
+      </TouchableOpacity>
   
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email."
-          placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
- 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
+       <View style={styles.inputContainer}>
+          <Image style={styles.inputIcon} source={{uri: 'pc.png'}}/>
+          <TextInput style={styles.inputs}
+              placeholder="Tài khoản"
+              secureTextEntry={true}
+              underlineColorAndroid='transparent'
+              onChangeText={(username) => this.setState({username})}/>
+        </View>
+      <View style={styles.inputContainer}>
+          <Image style={styles.inputIcon} source={{uri: 'pa.png'}}/>
+          <TextInput style={styles.inputs}
+              placeholder="Mật khẩu"
+              secureTextEntry={true}
+              underlineColorAndroid='transparent'
+              onChangeText={(password) => this.setState({password})}/>
+        </View>
+          <TouchableOpacity style={[styles.buttonContainer, styles.LoginButton]} onPress={() => this.onClickListener('login')}>
+          <Text style={styles.LoginText}>Login</Text>
+        </TouchableOpacity>
  
       <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
+        <Text style={styles.Question}>Bạn chưa có tài khoản ?</Text>
       </TouchableOpacity>
- 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
+
+       <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} onPress={() => this.onClickListener('sign_up')}>
+        <Text style={styles.SignupText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -59,40 +64,96 @@ const styles = StyleSheet.create({
   },
  
   image: {
-    marginBottom: 40,
-    height: 183,
-    width: 180,
-  },
- 
-  inputView: {
-    backgroundColor: "#FFC0CB",
-    borderRadius: 30,
-    width: "70%",
-    height: 45,
     marginBottom: 20,
- 
-    alignItems: "center",
+    height: 173,
+    width: 170,
   },
  
-  TextInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 20,
-  },
- 
-  forgot_button: {
+ inputContainer: {
+      borderBottomColor: '#000000',
+      borderTopColor: '#000000',
+      borderLeftColor: '#000000',
+      borderRightColor: '#000000',
+      backgroundColor: '#FFFFFF',
+      borderRadius:10,
+      borderBottomWidth: 1,
+      borderTopWidth: 1,
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+      borderStyle: "solid",
+      width:250,
+      height:45,
+      marginBottom:10,
+      flexDirection: 'row',
+      alignItems:'center'
+  }, 
+  Question: {
     height: 30,
-    marginBottom: 30,
+    marginTop: 120,
+    marginBottom: 1,
+    fontSize: 14,
+  },
+  Word: {
+    height: 30,
+    marginTop: 15,
+    marginBottom: 10,
+    fontSize: 18,
   },
  
-  loginBtn: {
-    width: "80%",
-    borderRadius: 25,
-    height: 50,
+  SignupButton: {
+   backgroundColor: "#b41616",
+   width: "50%",
+    borderRadius: 10,
+    height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
-    backgroundColor: "#FF1493",
+    marginTop: 20,
+     borderStyle: "solid",
+     borderColor: '#000000',
+      borderBottomColor: '#000000',
+      borderTopColor: '#000000',
+      borderLeftColor: '#000000',
+      borderRightColor: '#000000',
+      borderBottomWidth: 1,
+      borderTopWidth: 1,
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+  },
+  LoginButton: {
+    backgroundColor: "#b41616",
+   width: "50%",
+    borderRadius: 10,
+    height: 40,
+    borderStyle:"solid",
+    borderColor: '#000000',
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+    borderBottomColor: '#000000',
+      borderTopColor: '#000000',
+      borderLeftColor: '#000000',
+      borderRightColor: '#000000',
+      borderBottomWidth: 1,
+      borderTopWidth: 1,
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+  },
+  LoginText: {
+    color: 'white',
+  },
+  SignupText: {
+    color: 'white',
+  },
+   inputIcon:{
+    width:15,
+    height:15,
+    marginLeft:15,
+    justifyContent: 'center'
+  },
+  inputs:{
+      height:45,
+      marginLeft:16,
+      borderBottomColor: '#FFFFFF',
+      flex:1,
   },
 });
