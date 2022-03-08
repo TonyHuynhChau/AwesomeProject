@@ -24,7 +24,7 @@ module.exports = {
 
 
             //Xuất danh sách các món ăn thuộc loại món ăn đó
-        var query2 = { ID_LoaiMonAn : id.toString() };
+        var query2 = { LoaiMonAn : id.toString() };
         dbo.collection("MonAn").find(query2).toArray(function(err, result) {
           if (err) throw err;
           
@@ -105,15 +105,21 @@ insert_monan: (req, res) => {
        console.log('Connection established to', url);
        var collection = db.collection('MonAn');
 
-      collection.insert([data], function (err, result) {
-    if (err) {
-   res.json({message: 'That bai!', data : false})
-    } else {
-   res.json({message: 'Thanh cong!', data : true})
-        }
-     db.close();
-    });  
-          
+       db.collection('LoaiMonAn').find({TenLoaiMonAn : data.LoaiMonAn.toString()}).toArray(function(err, result) {
+        if (err) throw err;
+
+        data.LoaiMonAn = result[0]._id.toString();
+
+        collection.insert([data], function (err, result) {
+          if (err) {
+         res.json({message: 'That bai!', data : false})
+          } else {
+         res.json({message: 'Thanh cong!', data : true})
+              }
+           db.close();
+          }); 
+
+       });      
 }
 });
   },
@@ -134,10 +140,10 @@ insert_monan: (req, res) => {
     if (err) throw err;
     var dbo = db.db("CookingRecipe");
 
-    dbo.collection('LoaiMonAn').find({TenLoaiMonAn : data.ID_LoaiMonAn.toString()}).toArray(function(err, result) {
+    dbo.collection('LoaiMonAn').find({TenLoaiMonAn : data.LoaiMonAn.toString()}).toArray(function(err, result) {
         if (err) throw err;
 
-        data.ID_LoaiMonAn = result[0]._id.toString();
+        data.LoaiMonAn = result[0]._id.toString();
         //console.log(ID)
 
         var myquery = { _id : ID };

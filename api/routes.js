@@ -3,6 +3,7 @@ module.exports = function(app) {
   // --------------------------------------------API of User------------------------------------------------------------------------------------
 
     let user = require('./controllers/UserController');
+
   
     // API dang ky tai khoan User............................
     app.route('/DangKy')
@@ -73,7 +74,7 @@ module.exports = function(app) {
      app.route('/MonAnNoiBat')
      .get(monan.ds_monanNoiBat);
 
-     // API them 1 mon an (trong JSON tạm thời truyền giá trị cho ID_LoaiMonAn là tên loại món ăn (code tự động sẽ chuyển về giá trị ID tương ứng).............................
+     // API them 1 mon an (trong JSON tạm thời truyền giá trị cho LoaiMonAn là tên loại món ăn (code tự động sẽ chuyển về giá trị ID tương ứng).............................
     app.route('/ThemMonAn')
     .post(monan.insert_monan);
 
@@ -125,5 +126,30 @@ module.exports = function(app) {
      // API - User unsave mot mon an.............................
      app.route('/UnSaveMonAn/')
      .delete(savemonan.monanUnSave);
+
+
+      // -------------------------------------------------------API of banner------------------------------------------------------------------------------------
+
+
+      let banner = require('./controllers/BannerController');
+
+
+      // API lay danh sach banner theo ten mon an......................
+      app.route('/Banner/:monan')
+       .get(banner.ds_bannerTheoMonAn);
+
+
+      // API them 1 banner.................................................................
+     app.route('/ThemBanner')
+     .post(banner.insert_banner);
+ 
+ 
+       // API sua 1 banner.............................
+       app.route('/SuaBanner/:idBanner')
+       .put(banner.update_banner);
+ 
+        // API xoa 1 banner.............................
+     app.route('/XoaBanner/:idBanner')
+     .delete(banner.delete_banner);
 
   };

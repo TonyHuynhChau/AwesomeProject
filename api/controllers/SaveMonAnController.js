@@ -41,6 +41,11 @@ MongoClient.connect(url, function(err, db) {
 
   var collection = dbo.collection('UserSaveMonAn');
 
+  dbo.collection('MonAn').find({TenMonAn : data.MonAn.toString()}).toArray(function(err, result) {
+    if (err) throw err;
+
+    data.MonAn = result[0]._id.toString();
+
 collection.insert([data], function (err, result) {
     if (err) {
    res.json({message: 'That bai!', data : false})
@@ -48,7 +53,8 @@ collection.insert([data], function (err, result) {
    res.json({message: 'Thanh cong!', data : true})
         }
 db.close();
-  });         
+  });   
+   });      
 });
   },
 

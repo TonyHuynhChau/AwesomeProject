@@ -2,8 +2,10 @@ User (ID, UserName, HoTen, MatKhau, Anh, Email, DiaChi, SDT, ChucVu)
 
 LoaiMonAn(ID, TenLoaiMonAn)
 
-MonAn (ID, TenMonAn, NgayDang, NoiBat, CongThuc, Anh, LoaiMonAn)
+MonAn (ID, TenMonAn, NgayDang, NoiBat, ThongTin, CongThuc, Anh, LoaiMonAn)
 
-MonAnUserLike (ID, UserName, TenMonAn)
+MonAnUserLike (ID, UserName, MonAn)
 
-MonAnUserSave (ID, UserName, TenMonAn)
+MonAnUserSave (ID, UserName, MonAn)
+
+Banner (ID, Anh, MonAn)
