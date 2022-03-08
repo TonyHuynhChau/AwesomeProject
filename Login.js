@@ -44,10 +44,13 @@ export default function App() {
           <Text style={styles.LoginText}>Login</Text>
         </TouchableOpacity>
          <TouchableOpacity style={styles.twitter}> 
-         <Image style={styles.image} source={require("./assets/tw.png")} /> 
+         <Image style={styles.twitter} source={require("./assets/tw.png")} /> 
       </TouchableOpacity>
  <TouchableOpacity style={styles.facebook}> 
-          <Image style={styles.image} source={require("./assets/fb.png")} /> 
+          <Image style={styles.facebook} source={require("./assets/fb.png")} /> 
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.google}> 
+          <Image style={styles.google} source={require("./assets/gg.png")} /> 
         </TouchableOpacity>
  
       <TouchableOpacity>
@@ -144,19 +147,21 @@ const styles = StyleSheet.create({
       flex:1,
   },
   twitter: {
-    width: 20, height: 20,
-    marginBottom:20,
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10,
-    borderBottomLeftRadius:10,
-    borderBottomRightRadius:10
+    width: 50, height: 50,
+    marginRight:100,
+    marginBottom:10,
+    marginTop:10,
     },
     facebook: {
-     width: 20, height: 20,
-    marginBottom:20,
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10,
-    borderBottomLeftRadius:10,
-    borderBottomRightRadius:10,
+     width: 50, height: 50,
+    marginRight:5,
+    marginTop:-24.5,
+      },
+      google: {
+     width: 50, height: 50,
+    marginLeft:30,
+    marginRight:1,
+    marginBottom:-90,
+    margin:-36.9,
       },
   });
