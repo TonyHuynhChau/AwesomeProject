@@ -56,6 +56,10 @@ export default function App() {
       <TouchableOpacity>
         <Text style={styles.Question}>Bạn chưa có tài khoản ?</Text>
       </TouchableOpacity>
+       <TouchableOpacity style={[styles.buttonContainer, styles.AButton]}>
+           </TouchableOpacity>
+            <TouchableOpacity style={[styles.buttonContainer, styles.BButton]}>
+           </TouchableOpacity>
         <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} onPress={() => this.onClickListener('signup')}>
           <Text style={styles.SignupText}>Sign Up</Text>
         </TouchableOpacity>
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: 40,
      borderStyle: "solid",
      borderColor: '#000000',
       borderWidth: 2,
@@ -164,4 +168,32 @@ const styles = StyleSheet.create({
     marginBottom:-90,
     margin:-36.9,
       },
-  });
+      AButton:{
+         backgroundColor: "#b41616",
+   width: "20%",
+    height: 0,
+    borderStyle:"solid",
+    borderColor: '#000000',
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: -20.5,
+    marginBottom:5,
+    borderWidth: 2,
+      borderRadius: 8,
+      marginLeft:250,
+      },
+      BButton:{
+    backgroundColor: "#b41616",
+   width: "20%",
+    height: 0,
+    borderStyle:"solid",
+    borderColor: '#000000',
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: -9.5,
+    marginBottom:5,
+    borderWidth: 2,
+      borderRadius: 8,
+      marginRight:250,
+      },
+      });
