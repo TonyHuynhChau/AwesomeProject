@@ -9,23 +9,22 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+
  
-export default function App() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
  
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("./assets/logo2.png")} />
- 
+      <Image style={styles.image} source={require("./images/Logo.png")} />
       <StatusBar style="auto" />
-
        <TouchableOpacity>
-        <Text style={styles.Word}>LOGIN</Text>
+        <Text style={styles.Word}>Đăng Nhập</Text>
       </TouchableOpacity>
   
        <View style={styles.inputContainer}>
-          <Image style={styles.inputIcon} source={{uri: 'pc.png'}}/>
+          <Image style={styles.inputIcon} source={require("./images/accounticon.png")}/>
           <TextInput style={styles.inputs}
               placeholder="Tài khoản"
               secureTextEntry={true}
@@ -33,7 +32,7 @@ export default function App() {
               onChangeText={(username) => this.setState({username})}/>
         </View>
       <View style={styles.inputContainer}>
-          <Image style={styles.inputIcon} source={{uri: 'pa.png'}}/>
+          <Image style={styles.inputIcon} source={require("./images/passwordicon.png")}/>
           <TextInput style={styles.inputs}
               placeholder="Mật khẩu"
               secureTextEntry={true}
@@ -41,18 +40,20 @@ export default function App() {
               onChangeText={(password) => this.setState({password})}/>
         </View>
           <TouchableOpacity style={[styles.buttonContainer, styles.LoginButton]} onPress={() => this.onClickListener('login')}>
-          <Text style={styles.LoginText}>Login</Text>
+          <Text style={styles.LoginText}>Đăng Nhập</Text>
         </TouchableOpacity>
+
+          <View style= {styles.icon}>
          <TouchableOpacity style={styles.twitter}> 
-         <Image style={styles.twitter} source={require("./assets/tw.png")} /> 
+         <Image style={styles.twitter} source={require("./images/twitter.png")} /> 
       </TouchableOpacity>
- <TouchableOpacity style={styles.facebook}> 
-          <Image style={styles.facebook} source={require("./assets/fb.png")} /> 
+          <TouchableOpacity style={styles.facebook}> 
+          <Image style={styles.facebook} source={require("./images/google.png")} /> 
         </TouchableOpacity>
         <TouchableOpacity style={styles.google}> 
-          <Image style={styles.google} source={require("./assets/gg.png")} /> 
+          <Image style={styles.google} source={require("./images/fb.png")} /> 
         </TouchableOpacity>
- 
+        </View>
       <TouchableOpacity>
         <Text style={styles.Question}>Bạn chưa có tài khoản ?</Text>
       </TouchableOpacity>
@@ -61,7 +62,7 @@ export default function App() {
             <TouchableOpacity style={[styles.buttonContainer, styles.BButton]}>
            </TouchableOpacity>
         <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} onPress={() => this.onClickListener('signup')}>
-          <Text style={styles.SignupText}>Sign Up</Text>
+          <Text style={styles.SignupText}>Đăng Ký</Text>
         </TouchableOpacity>
       
     </View>
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
  
  inputContainer: {
      borderWidth: 3,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#d64b4b',
      borderRadius: 8,
       borderStyle: "solid",
       width:250,
@@ -97,9 +98,10 @@ const styles = StyleSheet.create({
     height: 30,
     marginTop: 120,
     marginBottom: 1,
-    fontSize: 14,
+    fontSize: 16,
   },
   Word: {
+    color:'#fff',
     height: 30,
     marginTop: 15,
     marginBottom: 10,
@@ -112,11 +114,12 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 20,
      borderStyle: "solid",
      borderColor: '#000000',
       borderWidth: 2,
       borderRadius: 8,
+      marginBottom:20
   },
   LoginButton: {
     backgroundColor: "#b41616",
@@ -149,25 +152,37 @@ const styles = StyleSheet.create({
       marginLeft:16,
       borderBottomColor: '#FFFFFF',
       flex:1,
+      color:'white'
+  },
+  icon:{
+    paddingTop: 10,
+    flex:1,
+    flexDirection:'row',
+    justifyContent: 'space-around'
+    
   },
   twitter: {
-    width: 50, height: 50,
-    marginRight:100,
-    marginBottom:10,
-    marginTop:10,
+    width: 40, height: 40,
+    // marginRight:100,
+    // marginBottom:10,
+    // marginTop:10,
+    
     },
     facebook: {
-     width: 50, height: 50,
-    marginRight:5,
-    marginTop:-24.5,
+     width: 40, height: 40,
+     
+    // marginRight:5,
+    // marginTop:-24.5,
       },
-      google: {
-     width: 50, height: 50,
-    marginLeft:30,
-    marginRight:1,
-    marginBottom:-90,
-    margin:-36.9,
+
+    google: {
+     width: 40, height: 40,
+    // marginLeft:30,
+    // marginRight:30,
+    // marginBottom:-90,
+    // margin:-36.9,
       },
+
       AButton:{
          backgroundColor: "#b41616",
    width: "20%",
@@ -182,6 +197,7 @@ const styles = StyleSheet.create({
       borderRadius: 8,
       marginLeft:250,
       },
+
       BButton:{
     backgroundColor: "#b41616",
    width: "20%",
