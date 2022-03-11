@@ -54,6 +54,10 @@ module.exports = function(app) {
 
 
      let monan = require('./controllers/MonAnController');
+
+     //API lay danh sach mon an thuoc chuoi mon an can tim kiem (chuoi con gan giong)......................................
+     app.route('/SearchMonAn/:search')
+       .get(monan.ds_monanSearch);
   
      // API lay danh sach cac mon an thuoc mot loai mon an nao do.............................
      app.route('/MonAn/:loaimonan')
@@ -95,7 +99,7 @@ module.exports = function(app) {
     let likemonan = require('./controllers/LikeMonAnController');
   
     // API lay danh sach cac mon an nguoi dung da like.............................
-    app.route('/LikeMonAn/:user&&:monan')
+    app.route('/LikeMonAn/:user')
       .get(likemonan.ds_monanUserLike);
 
 
@@ -115,7 +119,7 @@ module.exports = function(app) {
      let savemonan = require('./controllers/SaveMonAnController');
   
      // API lay danh sach cac mon an nguoi dung da save.............................
-     app.route('/SaveMonAn/:user&&:monan')
+     app.route('/SaveMonAn/:user')
        .get(savemonan.ds_monanUserSave);
  
  

@@ -44,7 +44,7 @@ MongoClient.connect(url, function(err, db) {
   dbo.collection('MonAn').find({TenMonAn : data.MonAn.toString()}).toArray(function(err, result) {
     if (err) throw err;
 
-    data.MonAn = result[0]._id.toString();
+    //data.MonAn = result[0]._id.toString();
 
 collection.insert([data], function (err, result) {
     if (err) {
@@ -71,7 +71,7 @@ db.close();
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("CookingRecipe");
-        var myquery = {UserName  : data.UserName, TenMonAn : data.TenMonAn  };
+        var myquery = {UserName  : data.UserName, MonAn : data.MonAn  };
       
         
         dbo.collection("UserSaveMonAn").deleteOne(myquery, function(err, obj) {

@@ -3,6 +3,31 @@ const Admin = require('mongodb/lib/admin');
 
 module.exports = {
 
+  //API lay danh sach mon an thuoc chuoi ten mon an can tim kiem (chuoi con gan giong)......................................
+
+  ds_monanSearch: (req, res) => {
+
+    let search = req.params.search;
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://localhost:27017/";
+    
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("CookingRecipe");
+
+       //Xuất danh sách...
+       var query = { TenMonAn : new RegExp(search.toString(), 'i')};
+       dbo.collection("MonAn").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         
+         res.json(result);
+         db.close();
+         });
+        
+       });
+  },
+
+
     // API lay danh sach cac mon an thuoc mot loai mon an nao do.............................
 
     ds_monanTheoLoai: (req, res) => {
@@ -21,7 +46,6 @@ module.exports = {
             if (err) throw err;
             
            var  id = result[0]._id;
-
 
             //Xuất danh sách các món ăn thuộc loại món ăn đó
         var query2 = { LoaiMonAn : id.toString() };
@@ -45,10 +69,10 @@ module.exports = {
         mongoClient.connect('mongodb://127.0.0.1:27017/CookingRecipe', function(err, db) {
         if (err) throw err;
         var monan = db.collection('MonAn');
-         monan.findOne({}, function (err,resx) {
+         monan.find({}).toArray(function (err,data) {
  
          if (err) throw err;
-          res.json(resx);
+          res.json(data);
      });
      db.close();
  });
@@ -108,7 +132,7 @@ insert_monan: (req, res) => {
        db.collection('LoaiMonAn').find({TenLoaiMonAn : data.LoaiMonAn.toString()}).toArray(function(err, result) {
         if (err) throw err;
 
-        data.LoaiMonAn = result[0]._id.toString();
+        //data.LoaiMonAn = result[0]._id.toString();
 
         collection.insert([data], function (err, result) {
           if (err) {
@@ -143,7 +167,7 @@ insert_monan: (req, res) => {
     dbo.collection('LoaiMonAn').find({TenLoaiMonAn : data.LoaiMonAn.toString()}).toArray(function(err, result) {
         if (err) throw err;
 
-        data.LoaiMonAn = result[0]._id.toString();
+        //data.LoaiMonAn = result[0]._id.toString();
         //console.log(ID)
 
         var myquery = { _id : ID };

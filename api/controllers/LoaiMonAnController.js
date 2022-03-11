@@ -11,10 +11,10 @@ module.exports = {
        mongoClient.connect('mongodb://127.0.0.1:27017/CookingRecipe', function(err, db) {
        if (err) throw err;
        var loaimonan = db.collection('LoaiMonAn');
-        loaimonan.findOne({}, function (err,resx) {
+        loaimonan.find({}).toArray(function (err,data) {
 
         if (err) throw err;
-         res.json(resx);
+         res.json(data);
     });
     db.close();
 });

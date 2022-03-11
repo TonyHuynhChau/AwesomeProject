@@ -27,7 +27,16 @@ module.exports = {
            //Lấy toàn bộ thông tin của table User
           var collection = db.collection('User');
 
-    // Insert Users (mọi sự đăng kí bên ngoài thì chức vụ là mặc định là Client)..................................
+
+          var query = { UserName : data.UserName };
+          db.collection("User").find(query).toArray(function(err, result) {
+              if (result[0] != null)
+              {
+                res.json({message: "Dang ky that bai!", data : false});
+                return;
+              }
+
+               // Insert Users (mọi sự đăng kí bên ngoài thì chức vụ là mặc định là Client)..................................
     // Mặc định ban đầu khi đăng kí, thông tin người dùng sẽ trống các trường SDT, DiaChi, Email, Anh (sẽ cập nhật về sau)
 
     data.Anh = "";
@@ -45,7 +54,8 @@ module.exports = {
 
         db.close();
       });
-  }
+          })
+        }
 });
     },
 

@@ -59,7 +59,7 @@ insert_banner: (req, res) => {
        db.collection('MonAn').find({TenMonAn : data.MonAn.toString()}).toArray(function(err, result) {
         if (err) throw err;
 
-        data.MonAn = result[0]._id.toString();
+        //data.MonAn = result[0]._id.toString();
 
         collection.insert([data], function (err, result) {
           if (err) {
@@ -94,7 +94,7 @@ insert_banner: (req, res) => {
     dbo.collection('MonAn').find({TenMonAn : data.MonAn.toString()}).toArray(function(err, result) {
         if (err) throw err;
 
-        data.MonAn = result[0]._id.toString();
+        //data.MonAn = result[0]._id.toString();
         //console.log(ID)
 
         var myquery = { _id : ID };
