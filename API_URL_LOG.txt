@@ -1,3 +1,6 @@
+# LINK API localhost : (trước tiên chạy npm run api trên Terminal) - localhost:3000/...
+# LINK API heroku : https://api-cookingrecipe.herokuapp.com/...
+
 // API for User........................................................................
 
 + Đăng kí :
@@ -91,7 +94,7 @@ Truyền vào JSON về loại món ăn cần sửa lại mới thuộc ID trên
 
 + Xuất các món ăn chứa cụm từ con cần tìm kiếm :
 
-[POST] localhost:3000/MonAn/[chuỗi con - tên món ăn cần tìm kiếm]
+[GET] localhost:3000/SearchMonAn/[chuỗi con - tên món ăn cần tìm kiếm]
 
 + Lấy danh sách món ăn thuộc một loại nào đó?
 
