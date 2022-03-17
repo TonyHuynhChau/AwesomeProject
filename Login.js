@@ -9,13 +9,15 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native";
 
  
-export default function Login() {
+export default Login = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
  
   return (
+    <SafeAreaView>
     <View style={styles.container}>
       <Image style={styles.image} source={require("./images/Logo.png")} />
       <StatusBar style="auto" />
@@ -39,7 +41,10 @@ export default function Login() {
               underlineColorAndroid='transparent'
               onChangeText={(password) => this.setState({password})}/>
         </View>
-          <TouchableOpacity style={[styles.buttonContainer, styles.LoginButton]} onPress={() => this.onClickListener('login')}>
+          <TouchableOpacity style={[styles.buttonContainer, styles.LoginButton]} 
+          onPress={() => {
+              navigation.navigate('Home');
+          }}>
           <Text style={styles.LoginText}>Đăng Nhập</Text>
         </TouchableOpacity>
 
@@ -61,24 +66,27 @@ export default function Login() {
            </TouchableOpacity>
             <TouchableOpacity style={[styles.buttonContainer, styles.BButton]}>
            </TouchableOpacity>
-        <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} onPress={() => this.onClickListener('signup')}>
+        <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} 
+        onPress={() => {
+          navigation.navigate('dangky');
+        }}>
           <Text style={styles.SignupText}>Đăng Ký</Text>
         </TouchableOpacity>
       
-    </View>
+    </View></SafeAreaView>
   );
 }
  
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    
     backgroundColor: "#d64b4b",
     alignItems: "center",
     justifyContent: "center",
   },
  
   image: {
-    marginBottom: 20,
+    marginVertical:20,
     height: 173,
     width: 170,
   },
@@ -129,9 +137,9 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
+    marginVertical:5,
     borderWidth: 2,
-      borderRadius: 8,
+    borderRadius: 8,
   },
   LoginText: {
     color: 'white',
@@ -184,32 +192,32 @@ const styles = StyleSheet.create({
       },
 
       AButton:{
-         backgroundColor: "#b41616",
-   width: "20%",
-    height: 0,
-    borderStyle:"solid",
-    borderColor: '#000000',
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: -20.5,
-    marginBottom:5,
-    borderWidth: 2,
-      borderRadius: 8,
-      marginLeft:250,
+        backgroundColor: "#b41616",
+        width: "20%",
+        height: 0,
+        borderStyle:"solid",
+        borderColor: '#000000',
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: -20.5,
+        marginBottom:5,
+        borderWidth: 2,
+          borderRadius: 8,
+          marginLeft:250,
       },
 
       BButton:{
-    backgroundColor: "#b41616",
-   width: "20%",
-    height: 0,
-    borderStyle:"solid",
-    borderColor: '#000000',
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: -9.5,
-    marginBottom:5,
-    borderWidth: 2,
-      borderRadius: 8,
-      marginRight:250,
-      },
+        backgroundColor: "#b41616",
+      width: "20%",
+        height: 0,
+        borderStyle:"solid",
+        borderColor: '#000000',
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: -9.5,
+        marginBottom:5,
+        borderWidth: 2,
+          borderRadius: 8,
+          marginRight:250,
+          },
       });

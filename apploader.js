@@ -11,6 +11,7 @@ import {
   Alert,
   Animated,
 } from "react-native";
+import Login from "./Login";
 
 export default class AppLoader extends React.Component {
   state = {
