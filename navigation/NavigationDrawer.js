@@ -2,21 +2,14 @@ import * as React from 'react';
 import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
 
 import HomeScreen from './screens/HomeScreen';
-import SettingScreen from './screens/SettingScreen'
+import SettingScreen from './screens/SettingScreen';
+import ProfileScreen from './screens/ProfileScreen';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Profile</Text>
-    </View>
-  );
-}
 
 const Drawer = createDrawerNavigator();
 
@@ -38,8 +31,8 @@ const CustomDrawer = props => {
             <Text>Shiba Shigeru</Text>
               <Text>Bvinhshikeru@gmail.com</Text>
           </View>
-     <Image source={require("./assets/pc.png")} 
-      style={{ width: 60, height: 60, borderRadius: 30 }}
+     <Image source={require("./assets/images/pc.png")}
+     style={{ width: 60, height: 60, borderRadius: 30 }}
      />
         </View>
         <DrawerItemList {...props} />
@@ -76,7 +69,7 @@ const DrawerNavigator = () => {
     >
       <Drawer.Screen component={HomeScreen} name='Home' />
       <Drawer.Screen component={SettingScreen} name=' Setting' /> 
-      <Drawer.Screen component={Profile} name='Profile' />
+      <Drawer.Screen component={ProfileScreen} name='Profile' />
     </Drawer.Navigator>
   );
 };
