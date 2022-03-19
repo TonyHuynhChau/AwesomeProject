@@ -31,7 +31,7 @@ const CustomDrawer = props => {
             <Text>Shiba Shigeru</Text>
               <Text>Bvinhshikeru@gmail.com</Text>
           </View>
-     <Image source={require("./assets/images/pc.png")}
+     <Image source={require("./")}
      style={{ width: 60, height: 60, borderRadius: 30 }}
      />
         </View>

@@ -4,6 +4,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { Searchbar } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient'
+import { SafeAreaView } from 'react-native';
+
 
 const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -11,6 +13,7 @@ const HomeScreen = () => {
   const onChangeSearch = query => setSearchQuery(query);
 
   return (
+    <ScrollView>
     <View style={styles.container}>
     <View style ={{ marginLeft: 10, margin: 10}}>
         <Text style = {{
@@ -34,25 +37,26 @@ const HomeScreen = () => {
               >
                     <View>
                         <Image
-                            source={require('../assets/images/P2.png')}
+                            source={require('./assets/P2.png')}
                              style = {{ marginLeft: 10, height:150, borderRadius: 15}}
                         />
                     </View>
 
                     <View>
                         <Image
-                            source={require('../assets/images/P3.png')}
+                            source={require('./assets/P3.png')}
                              style = {{marginLeft: 10, height:150, borderRadius: 15}}
                         />
                     </View>
 
                     <View> 
                         <Image
-                            source={require('../assets/images/P4.png')}
+                            source={require('./assets/P4.png')}
                              style = {{marginLeft: 10,height:150, borderRadius: 15, marginRight: 20}}
                         />
                     </View>
                 </ScrollView> 
+
            <ScrollView 
                     horizontal
                     showsHorizontalScrollIndicator={true}
@@ -61,28 +65,28 @@ const HomeScreen = () => {
                 >
                     <View>
                         <Image
-                            source={require('../assets/images/P5.png')}
+                            source={require('./assets/P5.png')}
                              style = {{ marginLeft: 10}}
                         />
                         <Text style={styles.text}>Bánh Mặn</Text>
                     </View>
                     <View>
                         <Image
-                            source={require('../assets/images/P6.png')}
+                            source={require('./assets/P6.png')}
                              style = {{marginLeft: 10}}
                         />
                          <Text style={styles.text}>Bánh Ngọt</Text>
                     </View>
                     <View> 
                         <Image
-                            source={require('../assets/images/P7.png')}
+                            source={require('./assets/P7.png')}
                              style = {{marginLeft: 10}}
                         />
                          <Text style={styles.text}>Đặc Biệt</Text>
                     </View>
                      <View> 
                         <Image
-                            source={require('../assets/images/P8.png')}
+                            source={require('./assets/P8.png')}
                              style = {{marginLeft: 10, marginRight: 10}}
                         />
                          <Text style={styles.text}>Đồ Uống</Text>
@@ -102,7 +106,7 @@ const HomeScreen = () => {
               >
                     <View>
                         <Image
-                            source={require('../assets/images/P9.png')}
+                            source={require('./assets/P9.png')}
                              style = {{ 
                                marginLeft: 10, 
                                height:150, 
@@ -116,7 +120,7 @@ const HomeScreen = () => {
 
                     <View>
                         <Image
-                            source={require('../assets/images/P10.png')}
+                            source={require('./assets/P10.png')}
                              style = {{
                                marginLeft: 10, 
                                height:150, 
@@ -130,7 +134,7 @@ const HomeScreen = () => {
 
                     <View> 
                         <Image
-                            source={require('../assets/images/P11.png')}
+                            source={require('./assets/P11.png')}
                              style = {{ 
                                marginLeft: 10,
                                height:150, 
@@ -157,7 +161,7 @@ const HomeScreen = () => {
               >
                     <View>
                         <Image
-                            source={require('../assets/images/P9.png')}
+                            source={require('./assets/P9.png')}
                              style = {{ 
                                marginLeft: 10, 
                                height:150, 
@@ -170,7 +174,7 @@ const HomeScreen = () => {
                     </View>
                     <View>
                         <Image
-                            source={require('../assets/images/P10.png')}
+                            source={require('./assets/P10.png')}
                              style = {{
                                marginLeft: 10, 
                                height:150, 
@@ -183,7 +187,7 @@ const HomeScreen = () => {
                     </View>
                     <View> 
                         <Image
-                            source={require('../assets/images/P11.png')}
+                            source={require('./assets/P11.png')}
                              style = {{
                                marginLeft: 10,
                                height:150, 
@@ -198,11 +202,12 @@ const HomeScreen = () => {
                 </ScrollView>  
               </ScrollView>       
       </View>
+      </ScrollView>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     marginTop: 10, 
         backgroundColor:"#d64b4b",
         height: 50

@@ -13,7 +13,7 @@ module.exports = {
         //Kết nối CSDL
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb://localhost:27017/CookingRecipe';
+        var url = 'mongodb+srv://thanhdat:thanhdat@mern-data.ukaa7.mongodb.net/MERN-Data?retryWrites=true&w=majority';
 
         MongoClient.connect(url, function (err, db) {
         if (err) {
