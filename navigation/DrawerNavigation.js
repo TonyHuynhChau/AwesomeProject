@@ -1,33 +1,20 @@
-import React, { Component } from "react";
-import { StatusBar } from "expo-status-bar";
-import AppLoader from "./apploader";
-import { AppRegistry } from "react-native";
-import SignUpView from "./dangky";
-import Login from "./Login";
-import { NavigationContainer } from "@react-navigation/native";
+import * as React from 'react';
 import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
-// import {
-//   createDrawerNavigator,
-//   DrawerContentScrollView,
-//   DrawerItemList,
-// } from '@react-navigation/drawer';
-import HomeScreen from './screen/HomeScreen';
-import SettingScreen from './screen/SettingScreen';
-import ProfileScreen from './screen/ProfileScreen';
-import ManageScreen from './screen/ManageScreen';
-import{
+
+import HomeScreen from './screens/HomeScreen';
+import SettingScreen from './screens/SettingScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import ManageScreen from './screens/ManageScreen';
+import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItemsList
-
-} from 'react-navigation-drawer'
-
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-
+  DrawerItemList,
+} from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator();
+
+
 const CustomDrawer = props => {
   return (
     <View style={{ flex: 1 }}>
@@ -46,7 +33,7 @@ const CustomDrawer = props => {
             <Text>Shiba Shigeru</Text>
               <Text>Bvinhshikeru@gmail.com</Text>
           </View>
-     <Image source={require("./assets/pc.png")}
+     <Image source={require("./assets/images/pc.png")}
      style={{ width: 60, height: 60, borderRadius: 30 }}
      />
         </View>
@@ -90,21 +77,11 @@ const DrawerNavigator = () => {
     </Drawer.Navigator>
   );
 };
-export default App = function   ()  {
-     return (
-        <>
-            {/* <AppLoader/> */}
-            {/* <SignUpView/> */}
-            {/* <Login/> */}
-            <NavigationContainer>{/* Rest of your app code */}
-                <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}} >
-                    <Stack.Screen name="Login" component={Login}/>
-                    <Stack.Screen name="dangky" component={SignUpView} />
-                    <Stack.Screen name="Home" component={HomeScreen}/>
-                </Stack.Navigator>
-                 <DrawerNavigator />
-            </NavigationContainer>
-        </>
-     );
- }
 
+export default function App() {
+  return (
+    <NavigationContainer>
+      <DrawerNavigator />
+    </NavigationContainer>
+  );
+}
