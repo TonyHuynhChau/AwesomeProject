@@ -6,7 +6,7 @@ import SignUpView from "./dangky";
 import Login from "./Login";
 import { NavigationContainer } from "@react-navigation/native";
 
-import HomeScreen from './navigation/DrawerNavigation';
+import DrawerNavigation from './navigation/DrawerNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from "./screen/HomeScreen";
@@ -23,8 +23,9 @@ export default App = function   ()  {
                 <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}} >
                     <Stack.Screen name="Login" component={Login}/>
                     <Stack.Screen name="dangky" component={SignUpView} />
-                    <Stack.Screen name="Home" component={HomeScreen}/>
+                    <Stack.Screen name="HomeScreen" component={HomeScreen}/>
                 </Stack.Navigator>
+               <DrawerNavigation/>
             </NavigationContainer>
         </>
      );
