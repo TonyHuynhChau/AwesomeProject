@@ -13,7 +13,7 @@ const HomeScreen = () => {
   const onChangeSearch = query => setSearchQuery(query);
 
   return (
-    <ScrollView>
+    // <ScrollView>
     <View style={styles.container}>
     <View style ={{ marginLeft: 10, margin: 10}}>
         <Text style = {{
@@ -202,7 +202,7 @@ const HomeScreen = () => {
                 </ScrollView>  
               </ScrollView>       
       </View>
-      </ScrollView>
+    //   </ScrollView>
   );
 };
 const styles = StyleSheet.create({
