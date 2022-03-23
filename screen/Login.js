@@ -10,12 +10,71 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native";
-
- 
+import AsyncStorage from '@react-native-community/async-storage'; 
+import { response } from "express";
+import { Keyboard } from "react-native-web";
 export default Login = ({navigation}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userpassword, setuserPassword] = useState("");
+
+  const passwordInputRef = createRef();
  
+
+  const handleSubmitPress = () => {
+    setErrortext('');
+    if(!userName){
+      alert ('Bạn hãy nhập tên tài khoản!');
+      return;
+    }
+    if(!userpassword){
+    alert('Bạn hãy nhập mật khẩu');
+    return;
+    }
+
+    let dataToSend = {
+      UserName: userName,
+      password: userpassword
+    };
+    let formBody = [];
+    for(let key in dataToSend){
+      let encodedKey = encodeURIComponent(key);
+      let encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+
+    fetch('http://http://192.168.1.8:3000/DangNhap',{
+      method: 'POST',
+      body: formBody,
+      headers: {
+        //Header Defination
+        'Content-Type' :
+        'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Hide Loder
+        // setLoading(false);
+        console.log(responseJson);
+        // If server reponse message same as Data matched
+        if(responseJson.status === 'success'){
+          AsyncStorage.setItem('user_id', responseJson.data.userName);
+
+          console.log(responseJson.data.userName);
+          navigation.replace('DrawerNavigationRoutes');
+        } else {
+          setErrortext(responseJson.msg);
+          console.log('Please check your email id or password');
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        console.error(error);
+      });
+  };
+  
   return (
     <SafeAreaView>
     <View style={styles.container}>
@@ -30,16 +89,33 @@ export default Login = ({navigation}) => {
           <TextInput style={styles.inputs}
               placeholder="Tài khoản"
               secureTextEntry={true}
-              underlineColorAndroid='transparent'
-              onChangeText={(username) => this.setState({username})}/>
+              
+              autoCapitalize="none"
+              keyboardType='default'
+              onChangeText={(username) => setUserName(userName)}
+              onSubmitEditing = {() => 
+                  passwordInputRef.current &&
+                  passwordInputRef.current.focus()
+                  }
+              underlineColorAndroid="#f000"
+              blurOnSubmit={false}
+              />
+              
         </View>
       <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={require("./images/passwordicon.png")}/>
           <TextInput style={styles.inputs}
               placeholder="Mật khẩu"
               secureTextEntry={true}
-              underlineColorAndroid='transparent'
-              onChangeText={(password) => this.setState({password})}/>
+              keyboardType='default'
+              ref={passwordInputRef}
+              onSubmitEditing={Keyboard.dismiss}
+              blurOnSubmit={false}
+            
+                underlineColorAndroid="#f000"
+                returnKeyType="next"
+
+              />
         </View>
           <TouchableOpacity style={[styles.buttonContainer, styles.LoginButton]} 
           onPress={() => {
@@ -67,14 +143,18 @@ export default Login = ({navigation}) => {
             <TouchableOpacity style={[styles.buttonContainer, styles.BButton]}>
            </TouchableOpacity>
         <TouchableOpacity style={[styles.buttonContainer, styles.SignupButton]} 
-        onPress={() => {
-          navigation.navigate('dangky');
-        }}>
-          <Text style={styles.SignupText}>Đăng Ký</Text>
+        onPress={handleSubmitPress} >
+          // navigation.navigate('dangky');
+          
+        
+          <Text style={styles.SignupText} 
+          onPress ={() =>
+          navigation.navigate('dangky')}>Đăng Ký</Text>
         </TouchableOpacity>
       
     </View></SafeAreaView>
   );
+
 }
  
 const styles = StyleSheet.create({

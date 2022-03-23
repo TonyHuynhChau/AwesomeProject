@@ -5,18 +5,18 @@ const bodyParser = require('body-parser')
 //require('dotenv').load()
 const port = process.env.PORT || 3000
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect('mongodb+srv://thanhdat:thanhdat@mern-data.ukaa7.mongodb.net/MERN-Data?retryWrites=true&w=majority')
+// const connectDB = async () => {
+//     try {
+//         await mongoose.connect('mongodb+srv://thanhdat:thanhdat@mern-data.ukaa7.mongodb.net/MERN-Data?retryWrites=true&w=majority')
 
-        console.log('MongoDB connected')
-    } catch (error) {
-        console.log(error.message)
-        process.exit(1)
-    }
-}
+//         console.log('MongoDB connected')
+//     } catch (error) {
+//         console.log(error.message)
+//         process.exit(1)
+//     }
+// }
 
-connectDB()
+// connectDB()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())

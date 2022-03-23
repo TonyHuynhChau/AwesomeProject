@@ -13,7 +13,7 @@ module.exports = {
         //Kết nối CSDL
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb+srv://thanhdat:thanhdat@mern-data.ukaa7.mongodb.net/MERN-Data?retryWrites=true&w=majority';
+        var url = "mongodb://localhost:27017/";
 
         MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -72,7 +72,7 @@ module.exports = {
     
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("CookingRecipe");
+      var dbo = db.db("admin");
 
       //Kiểm tra username và password người dùng truyền vào có đúng không?
       var query = { UserName : data.UserName, MatKhau : data.MatKhau };
@@ -106,7 +106,7 @@ module.exports = {
 
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("CookingRecipe");
+    var dbo = db.db("admin");
 
 var myquery = { UserName: username.toString() };
 var newvalues = { $set: {HoTen : data.HoTen, MatKhau : data.MatKhau, SDT : data.SDT, Email : data.Email, DiaChi : data.DiaChi, Anh : data.Anh} };
@@ -135,7 +135,7 @@ db.close();
     
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("CookingRecipe");
+      var dbo = db.db("admin");
 
       var query = { UserName : username.toString() };
       dbo.collection("User").find(query).toArray(function(err, result) {

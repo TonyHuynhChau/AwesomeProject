@@ -17,7 +17,7 @@ export default class SignUpView extends Component {
     super(props);
     state = {
       username: '',
-      password: '',
+      MatKhau: '',
       repassword: '',
       fullName: '',
       email   : '',
@@ -28,6 +28,11 @@ export default class SignUpView extends Component {
   onClickListener = (viewId) => {
     Alert.alert("Alert", "Button pressed "+viewId);
   }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
   render() {
     return (
@@ -36,9 +41,12 @@ export default class SignUpView extends Component {
           <Image style={styles.inputIcon} source={{uri: '3.png'}}/>
           <TextInput style={styles.inputs}
               placeholder="Tài khoản"
-              secureTextEntry={true}
+              keyboardType='Tài khoản'
               underlineColorAndroid='transparent'
-              onChangeText={(username) => this.setState({username})}/>
+              onChangeText={(username) => this.setState({username})}
+                // value={this.state.username}
+                onChange={this.handleChange}
+              />
         </View>
       <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{uri: '3.png'}}/>
@@ -46,7 +54,10 @@ export default class SignUpView extends Component {
               placeholder="Mật khẩu"
               secureTextEntry={true}
               underlineColorAndroid='transparent'
-              onChangeText={(password) => this.setState({password})}/>
+              onChangeText={(MatKhau) => this.setState({MatKhau})}
+              // value={this.state.MatKhau}
+                onChange={this.handleChange}
+              />
         </View>
       <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{uri: '3.png'}}/>
@@ -54,7 +65,10 @@ export default class SignUpView extends Component {
               placeholder="Xác nhận mật khẩu"
               secureTextEntry={true}
               underlineColorAndroid='transparent'
-              onChangeText={(repassword) => this.setState({repassword})}/>
+              onChangeText={(repassword) => this.setState({repassword})}
+              // value={this.state.repassword}
+                onChange={this.handleChange}
+              />
         </View>
         <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{uri: '1.png'}}/>
@@ -62,7 +76,10 @@ export default class SignUpView extends Component {
               placeholder="Họ và Tên"
               keyboardType="email-address"
               underlineColorAndroid='transparent'
-              onChangeText={(fullName) => this.setState({fullName})}/>
+              onChangeText={(fullName) => this.setState({fullName})}
+              // value={this.state.fullName}
+                onChange={this.handleChange}
+              />
         </View>
 
         <View style={styles.inputContainer}>
@@ -71,11 +88,15 @@ export default class SignUpView extends Component {
               placeholder="Email"
               keyboardType="email-address"
               underlineColorAndroid='transparent'
-              onChangeText={(email) => this.setState({email})}/>
+              onChangeText={(email) => this.setState({email})}
+              // value={this.state.email}
+                onChange={this.handleChange}
+              />
         </View>
 
-        <TouchableHighlight style={[styles.buttonContainer, styles.signupButton]} onPress={() => this.onClickListener('sign_up')}>
+        <TouchableHighlight style={[styles.buttonContainer, styles.signupButton]} onPress={(dangky) => this.onClickListener('dangky')}>
           <Text style={styles.signUpText}>Sign up</Text>
+          {/* <input type='submit'/> */}
         </TouchableHighlight>
       </View>
     );
