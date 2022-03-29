@@ -13,19 +13,19 @@ import {
   Keyboard,
   TouchableOpacity,
   ScrollView,
-} from "react-native";
+} from 'react-native';
 import { SafeAreaView } from "react-native";
 
 // import Loader from './Components/Loader';
 
 const RegisterScreen = (props) => {
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userHoten, setUserHoten] = useState("");
-  const [userAddress, setUserAddress] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userHoten, setUserHoten] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errortext, setErrortext] = useState("");
+  const [errortext, setErrortext] = useState('');
   const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
 
   const userInputRef = createRef();
@@ -35,7 +35,7 @@ const RegisterScreen = (props) => {
   const emailInputRef = createRef();
 
   const handleSubmitButton = () => {
-    setErrortext("");
+    setErrortext('');
     if (!userName) {
       alert("Please fill Name");
       return;
@@ -57,7 +57,7 @@ const RegisterScreen = (props) => {
       return;
     }
     //Show Loader
-    setLoading(true);
+    // setLoading(true);
     var dataToSend = {
       UserName: userName,
       email: userEmail,
@@ -73,12 +73,12 @@ const RegisterScreen = (props) => {
     }
     formBody = formBody.join("&");
 
-    fetch("http://192.168.1.8:3000/DangKy", {
-      method: "POST",
+    fetch('http://192.168.1.46:3000/DangKy', {
+      method: 'POST',
       body: formBody,
       headers: {
         //Header Defination
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       },
     })
       .then((response) => response.json())
@@ -109,19 +109,19 @@ const RegisterScreen = (props) => {
           justifyContent: "center",
         }}
       >
-        <Image
-          source={require("../Images/success.png")}
+      <Image
+          source={require('./assets/success.png')}
           style={{
             height: 150,
             resizeMode: "contain",
             alignSelf: "center",
           }}
         />
-        <Text style={styles.successTextStyle}>Registration Successful</Text>
+        <Text style={styles.successTextStyle}>Registration Successful </Text>
         <TouchableOpacity
           style={styles.buttonStyle}
           activeOpacity={0.5}
-          onPress={() => props.navigation.navigate("Login")}
+          onPress={() => props.navigation.navigate('Login')}
         >
           <Text style={styles.buttonTextStyle}>Login Now</Text>
         </TouchableOpacity>
@@ -141,7 +141,7 @@ const RegisterScreen = (props) => {
         >
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../images/Logo.png")}
+              source={require('./assets/Logo.png')}
               style={{
                 width: "50%",
                 height: 160,
@@ -232,15 +232,19 @@ const RegisterScreen = (props) => {
                 blurOnSubmit={false}
               />
             </View>
-            {errortext != "" ? (
-              <Text style={styles.errorTextStyle}>{errortext}</Text>
+            <View>
+            {errortext != '' ? (
+              <Text style={styles.errorTextStyle}>
+                {errortext}
+              </Text>
             ) : null}
+            </View>
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitButton}
             >
-              <Text style={styles.buttonTextStyle}>Đăng ký</Text>
+            <Text style={styles.buttonTextStyle}>Đăng ký</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </ScrollView>

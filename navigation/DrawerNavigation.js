@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
 
-import HomeScreen from './screens/HomeScreen';
-import SettingScreen from './screens/SettingScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import ManageScreen from './screens/ManageScreen';
+import HomeScreen from './screen/drawerScreens/HomeScreen';
+import SettingScreen from './screen/drawerScreens/Setting';
+import ProfileScreen from './screen/drawerScreens/ProfileScreen';
+import ManageScreen from './screens/drawerScreens/ManageScreen';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,

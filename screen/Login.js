@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import { StatusBar } from 'expo-status-bar';
+import React, { useState , createRef} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,25 +8,25 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-} from "react-native";
-import { SafeAreaView } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { response } from "express";
-import { Keyboard } from "react-native-web";
+} from 'react-native';
+import { SafeAreaView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { response } from "express";
+import { Keyboard } from 'react-native';
 export default Login = ({ navigation }) => {
-  const [userName, setUserName] = useState("");
-  const [userpassword, setuserPassword] = useState("");
-
+  const [userName, setUserName] = useState('');
+  const [userpassword, setuserPassword] = useState('');
+  const [errortext, setErrortext] = useState('');
   const passwordInputRef = createRef();
 
   const handleSubmitPress = () => {
     setErrortext("");
     if (!userName) {
-      alert("Bạn hãy nhập tên tài khoản!");
+      alert('Bạn hãy nhập tên tài khoản!');
       return;
     }
     if (!userpassword) {
-      alert("Bạn hãy nhập mật khẩu");
+      alert('Bạn hãy nhập mật khẩu');
       return;
     }
 
@@ -38,16 +38,16 @@ export default Login = ({ navigation }) => {
     for (let key in dataToSend) {
       let encodedKey = encodeURIComponent(key);
       let encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + "=" + encodedValue);
+      formBody.push(encodedKey + '=' + encodedValue);
     }
     formBody = formBody.join("&");
 
-    fetch("http://http://192.168.1.8:3000/DangNhap", {
-      method: "POST",
+    fetch('http://192.168.1.46:3000/DangNhap', {
+      method: 'POST',
       body: formBody,
       headers: {
         //Header Defination
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
       },
     })
       .then((response) => response.json())
@@ -56,11 +56,11 @@ export default Login = ({ navigation }) => {
         // setLoading(false);
         console.log(responseJson);
         // If server reponse message same as Data matched
-        if (responseJson.status === "success") {
-          AsyncStorage.setItem("user_id", responseJson.data.userName);
+        if (responseJson.status === 'success') {
+         AsyncStorage.setItem('user_id', responseJson.data.userName);
 
           console.log(responseJson.data.userName);
-          navigation.replace("DrawerNavigationRoutes");
+          navigation.replace('DrawerNavigation');
         } else {
           setErrortext(responseJson.msg);
           console.log("Please check your email id or password");
@@ -72,20 +72,22 @@ export default Login = ({ navigation }) => {
         console.error(error);
       });
   };
-
+  
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Image style={styles.image} source={"../images/Logo.png"} />
+        <Image style={styles.image} source={require('./assets/Logo.png')} />
         <StatusBar style="auto" />
         <TouchableOpacity>
+        <View>
           <Text style={styles.Word}>Đăng Nhập</Text>
+          </View>  
         </TouchableOpacity>
 
         <View style={styles.inputContainer}>
           <Image
             style={styles.inputIcon}
-            source={"../images/accounticon.png"}
+            source={require('./assets/accounticon.png')}
           />
           <TextInput
             style={styles.inputs}
@@ -104,7 +106,7 @@ export default Login = ({ navigation }) => {
         <View style={styles.inputContainer}>
           <Image
             style={styles.inputIcon}
-            source={"../images/passwordicon.png"}
+            source={require('./assets/passwordicon.png')}
           />
           <TextInput
             style={styles.inputs}
@@ -118,24 +120,29 @@ export default Login = ({ navigation }) => {
             returnKeyType="next"
           />
         </View>
+
+        {errortext != '' ? (
+              <Text style={styles.errorTextStyle}>
+                {errortext}
+              </Text>
+            ) : null}
         <TouchableOpacity
           style={[styles.buttonContainer, styles.LoginButton]}
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-        >
+          onPress={handleSubmitPress}
+            // navigation.navigate('Home');
+            >
           <Text style={styles.LoginText}>Đăng Nhập</Text>
         </TouchableOpacity>
 
         <View style={styles.icon}>
           <TouchableOpacity style={styles.twitter}>
-            <Image style={styles.twitter} source={"../images/twitter.png"} />
+            <Image style={styles.twitter} source={require('./assets/twitter.png')} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.facebook}>
-            <Image style={styles.facebook} source={"../images/google.png"} />
+            <Image style={styles.facebook} source={require('./assets/google.png')} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.google}>
-            <Image style={styles.google} source={"../images/fb.png"} />
+            <Image style={styles.google} source={require('../assets/fb.png')} />
           </TouchableOpacity>
         </View>
         <TouchableOpacity>
@@ -147,17 +154,8 @@ export default Login = ({ navigation }) => {
         <TouchableOpacity
           style={[styles.buttonContainer, styles.BButton]}
         ></TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.buttonContainer, styles.SignupButton]}
-          onPress={handleSubmitPress}
-        >
-          // navigation.navigate('dangky');
-          <Text
-            style={styles.SignupText}
-            onPress={() => navigation.navigate("dangky")}
-          >
-            Đăng Ký
-          </Text>
+        <TouchableOpacity style={styles.SignupButton} onPress={() => navigation.navigate('dangky')}>
+        <Text style = {styles.SignupText}> Đăng Ký</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
