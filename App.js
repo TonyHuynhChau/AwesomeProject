@@ -28,7 +28,10 @@ export default App = function () {
           {/* <Stack.Screen name="dangky" component={SignUpView} /> */}
           <Stack.Screen name='dangky' component={RegisterScreen} />
           <Stack.Screen name='Home' component={HomeScreen} />
-          <Stack.Screen name='BanhMan' component={ListMan} />
+          <Stack.Screen name='BanhMan' component={ListMan}
+                        screenOptions ={{
+                          title:'Bánh Mặn',
+                          headerShown: true}} />
           <Stack.Screen name="BanhNgot" component={ListNgot}/>
           <Stack.Screen name="DacBiet" component={ListSpecial}/>
           <Stack.Screen name="DoUong" component={ListDrink}/>

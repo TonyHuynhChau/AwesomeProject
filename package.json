@@ -16,6 +16,7 @@
     "@react-navigation/drawer": "^6.4.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.5.0",
+    "apisauce": "^2.1.5",
     "dotenv": "^16.0.0",
     "events": "^3.3.0",
     "expo": "~44.0.0",

@@ -8,62 +8,83 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { create } from "apisauce";
+import { useEffect } from "react/cjs/react.development";
 
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    name: "First Item",
-    date: "8/3/2021",
-    url: "https://kenh14cdn.com/2017/2-1510316761218.jpeg",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    name: "Second Item",
-    date: "8/3/2021",
-    url: "https://kenh14cdn.com/2017/2-1510316761218.jpeg",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    name: "Third Item",
-    date: "8/3/2021",
-    url: "https://kenh14cdn.com/2017/2-1510316761218.jpeg",
-  },
-];
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <View
-      style={{
-        height: 150,
-        flex: 1,
-        paddingTop: 20,
-        paddingStart: 10,
-        flexDirection: "row",
-      }}
-    >
-      <Image style={[styles.image]} source={item.url} />
-      <View style={{ flex: 1 }}>
-        <Text style={[styles.title, textColor]}>{item.name}</Text>
-        <View
-          style={{ height: 2, backgroundColor: "black", marginHorizontal: 5 }}
-        ></View>
-        <Text style={[styles.date, textColor]}>Ngày đăng: {item.date}</Text>
-      </View>
-    </View>
-  </TouchableOpacity>
-);
 
-const ListMan = () => {
+
+
+const ListNgot = ({navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
+    const [idmonan, setidmonan] = useState('');
+    const [TenMonAn, setTenMonAn] = useState('');
+    const [NgayDangMonAn, setNgayDangMonAn] = useState('');
+    const [HinhMonAn, setHinhMonAn] = useState('');
+    const [data ,setData] = useState("")
+  
+    const api = create({
+      baseURL: "http://192.168.1.166:3000/MonAn",
+    });
+    var dataToSend = {
+      _id : idmonan,
+      TenMonAn: TenMonAn,
+      NgayDang: NgayDangMonAn,
+      Anh: HinhMonAn
+  
+    };
+    var formBody = [];
+    for (var key in dataToSend) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+  
+  
+    const fetchData = async () => {
+      
+      api
+      .get("/622f3a0a5c3057036606e33e")
+      .then((response) => response.data)
+      .then((data) => setData(data));
+  };
+    
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+  const Item = ({ item, onPress, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+      <View
+        style={{
+          height: 150,
+          flex: 1,
+          paddingTop: 20,
+          paddingStart: 10,
+          flexDirection: "row",
+        }}
+      >
+        <Image style={[styles.image]} source={item.Anh} />
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.title, textColor]}>{item.TenMonAn}</Text>
+          <View
+            style={{ height: 2, backgroundColor: "black", marginHorizontal: 5 }}
+          ></View>
+          <Text style={[styles.date, textColor]}>Ngày đăng: {item.NgayDang}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
 
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#C4C4C4" : "#E5E5E5";
-    const color = item.id === selectedId ? "white" : "black";
+    const backgroundColor = item._id === selectedId ? "#C4C4C4" : "#E5E5E5";
+    const color = item._id === selectedId ? "white" : "black";
 
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
+        onPress={() => setSelectedId(item._id)}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
       />
@@ -73,9 +94,9 @@ const ListMan = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={DATA}
+        data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         extraData={selectedId}
       />
     </View>
@@ -112,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListMan;
+export default ListNgot;
