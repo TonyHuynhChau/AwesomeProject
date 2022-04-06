@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from "react-native";
 
-// import Loader from './Components/Loader';
+import Loader from "./Components/loader";
 
 const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
@@ -57,7 +57,7 @@ const RegisterScreen = (props) => {
       return;
     }
     //Show Loader
-    // setLoading(true);
+    setLoading(true);
     var dataToSend = {
       UserName: userName,
       email: userEmail,
@@ -73,7 +73,7 @@ const RegisterScreen = (props) => {
     }
     formBody = formBody.join("&");
 
-    fetch('http://192.168.1.46:3000/DangKy', {
+    fetch('http://192.168.1.28:3000/DangKy', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -131,7 +131,7 @@ const RegisterScreen = (props) => {
   return (
     <SafeAreaView>
       <View style={{ backgroundColor: "#d64b4b" }}>
-        {/* <Loader loading={loading} /> */}
+        <Loader loading={loading} />
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{

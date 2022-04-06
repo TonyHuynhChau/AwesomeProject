@@ -13,13 +13,15 @@ import { SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { response } from "express";
 import { Keyboard } from 'react-native';
+import Loader from './Components/loader';
 export default Login = ({ navigation }) => {
   const [userName, setUserName] = useState('');
   const [userpassword, setuserPassword] = useState('');
   const [errortext, setErrortext] = useState('');
+  const [loading, setLoading] = useState(false);
   const passwordInputRef = createRef();
 
-  const handleSubmitPress = () => {
+  const handleSubmitPress = (props) => {
     setErrortext("");
     if (!userName) {
       alert('Bạn hãy nhập tên tài khoản!');
@@ -32,7 +34,7 @@ export default Login = ({ navigation }) => {
 
     let dataToSend = {
       UserName: userName,
-      password: userpassword,
+      MatKhau: userpassword,
     };
     let formBody = [];
     for (let key in dataToSend) {
@@ -42,7 +44,7 @@ export default Login = ({ navigation }) => {
     }
     formBody = formBody.join("&");
 
-    fetch('http://192.168.1.46:3000/DangNhap', {
+    fetch('http://192.168.1.28:3000/DangNhap', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -53,17 +55,17 @@ export default Login = ({ navigation }) => {
       .then((response) => response.json())
       .then((responseJson) => {
         //Hide Loder
-        // setLoading(false);
+        setLoading(false);
         console.log(responseJson);
         // If server reponse message same as Data matched
         if (responseJson.status === 'success') {
          AsyncStorage.setItem('user_id', responseJson.data.userName);
 
           console.log(responseJson.data.userName);
-          navigation.replace('DrawerNavigation');
+          this.props.navigation.navigate('dangky');
         } else {
           setErrortext(responseJson.msg);
-          console.log("Please check your email id or password");
+          console.log("Please check your id or password");
         }
       })
       .catch((error) => {
@@ -91,11 +93,11 @@ export default Login = ({ navigation }) => {
           />
           <TextInput
             style={styles.inputs}
+            onChangeText={(UserName) => setUserName(UserName)}
             placeholder="Tài khoản"
             secureTextEntry={true}
             autoCapitalize="none"
             keyboardType="default"
-            onChangeText={(username) => setUserName(userName)}
             onSubmitEditing={() =>
               passwordInputRef.current && passwordInputRef.current.focus()
             }
@@ -110,6 +112,7 @@ export default Login = ({ navigation }) => {
           />
           <TextInput
             style={styles.inputs}
+            onChangeText = {(userpassword) => setuserPassword(userpassword)}
             placeholder="Mật khẩu"
             secureTextEntry={true}
             keyboardType="default"
@@ -128,9 +131,15 @@ export default Login = ({ navigation }) => {
             ) : null}
         <TouchableOpacity
           style={[styles.buttonContainer, styles.LoginButton]}
-          onPress={handleSubmitPress}
+          onPress={handleSubmitPress => (navigation.navigate('Home'))}
             // navigation.navigate('Home');
             >
+
+          {/* <TouchableOpacity
+          style={[styles.buttonContainer, styles.LoginButton]}
+          onPress={() => navigation.navigate('Home')}
+            
+            > */}
           <Text style={styles.LoginText}>Đăng Nhập</Text>
         </TouchableOpacity>
 
@@ -304,5 +313,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
     marginRight: 250,
+  },
+  errorTextStyle: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 14,
   },
 });

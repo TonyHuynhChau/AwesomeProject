@@ -15,9 +15,9 @@ export default class ProfileScreen extends Component {
   render() {
     return (
       <View style = {styles.container}>
-       <Image style = { styles.pc} source={require("../assets/images/JP.png")} />
+       <Image style = { styles.pc} source={require('../assets/success.png')} />
       <View style={styles.bottomContainer}>
-     <Image style={styles.image} source={require("../assets/images/pc.png")} />
+     <Image style={styles.image} source={require('../assets/success.png')} />
       <View style={styles.inputContainer}>
           <TextInput style={styles.inputs}
               placeholder="Shikeru21"

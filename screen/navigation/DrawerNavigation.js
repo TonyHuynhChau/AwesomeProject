@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
 
-import HomeScreen from './screen/drawerScreens/HomeScreen';
-import SettingScreen from './screen/drawerScreens/Setting';
-import ProfileScreen from './screen/drawerScreens/ProfileScreen';
-import ManageScreen from './screens/drawerScreens/ManageScreen';
+import HomeScreen from "../drawerScreens/HomeScreen";
+import SettingScreen from '../drawerScreens/SettingScreen';
+import ProfileScreen from '../drawerScreens/ProfileScreen';
+import ManageScreen from '../drawerScreens/ManageScreen';
 import {
-  createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -33,7 +34,7 @@ const CustomDrawer = props => {
             <Text>Shiba Shigeru</Text>
               <Text>Bvinhshikeru@gmail.com</Text>
           </View>
-     <Image source={require("./assets/images/pc.png")}
+     <Image source={require('../assets/pc.png')}
      style={{ width: 60, height: 60, borderRadius: 30 }}
      />
         </View>

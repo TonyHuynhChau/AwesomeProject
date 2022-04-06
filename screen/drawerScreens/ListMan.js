@@ -30,6 +30,38 @@ const DATA = [
   },
 ];
 
+fetch('http://192.168.1.28:3000/MonAn', {
+      method: 'GET',
+      body: formBody,
+      headers: {
+        //Header Defination
+        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Hide Loder
+        setLoading(false);
+        console.log(responseJson);
+        // If server reponse message same as Data matched
+        if (responseJson.status === 'success') {
+         AsyncStorage.setItem('_id', responseJson.data.idmonan);
+
+          console.log(responseJson.data.userName);
+          this.props.navigation.navigate('dangky');
+        } else {
+          setErrortext(responseJson.msg);
+          console.log("Please check your id or password");
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        console.error(error);
+      });
+  
+  
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <View
@@ -53,7 +85,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
-const ListMan = () => {
+const ListMan = ({navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {

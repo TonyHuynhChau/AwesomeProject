@@ -13,7 +13,7 @@ module.exports = {
         //Kết nối CSDL
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = "mongodb://localhost:27017/";
+        var url = "mongodb://localhost:27017/CookingRecipe";
 
         MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -23,7 +23,7 @@ module.exports = {
        else {
          //Kết nối CSDL thành công
            console.log('Connection established to', url);
-
+          
            //Lấy toàn bộ thông tin của table User
           var collection = db.collection('User');
 
@@ -72,7 +72,7 @@ module.exports = {
     
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("admin");
+      var dbo = db.db("CookingRecipe");
 
       //Kiểm tra username và password người dùng truyền vào có đúng không?
       var query = { UserName : data.UserName, MatKhau : data.MatKhau };
@@ -106,7 +106,7 @@ module.exports = {
 
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("admin");
+    var dbo = db.db("CookingRecipe");
 
 var myquery = { UserName: username.toString() };
 var newvalues = { $set: {HoTen : data.HoTen, MatKhau : data.MatKhau, SDT : data.SDT, Email : data.Email, DiaChi : data.DiaChi, Anh : data.Anh} };
@@ -135,7 +135,7 @@ db.close();
     
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("admin");
+      var dbo = db.db("CookingRecipe");
 
       var query = { UserName : username.toString() };
       dbo.collection("User").find(query).toArray(function(err, result) {
