@@ -32,7 +32,9 @@ module.exports = {
 
     ds_monanTheoLoai: (req, res) => {
 
-        let loaimonan = req.params.loaimonan;
+        let ID_loaimonan = req.params.loaimonan;
+        let ID = new require('mongodb').ObjectID(ID_loaimonan);
+
         var MongoClient = require('mongodb').MongoClient;
         var url = "mongodb://localhost:27017/";
         
@@ -40,21 +42,23 @@ module.exports = {
           if (err) throw err;
           var dbo = db.db("CookingRecipe");
     
+          /*
           //Lấy ID của loại món ăn cần xuất DS các món ăn của nó
-          var query = { TenLoaiMonAn : loaimonan.toString() };
+          var query = { _id : ID };
           dbo.collection("LoaiMonAn").find(query).toArray(function(err, result) {
             if (err) throw err;
             
            var  id = result[0]._id;
+           */
 
             //Xuất danh sách các món ăn thuộc loại món ăn đó
-        var query2 = { LoaiMonAn : id.toString() };
+        var query2 = { LoaiMonAn : ID.toString() };
         dbo.collection("MonAn").find(query2).toArray(function(err, result) {
           if (err) throw err;
           
           res.json(result);
           db.close();
-          });
+        //  });
             
           });
         });

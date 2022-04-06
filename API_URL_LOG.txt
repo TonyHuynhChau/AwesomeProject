@@ -98,7 +98,7 @@ Truyền vào JSON về loại món ăn cần sửa lại mới thuộc ID trên
 
 + Lấy danh sách món ăn thuộc một loại nào đó?
 
-[GET] localhost:3000/MonAn/[Loại món ăn cần xem các món ăn của nó - ví dụ Banh ngot]
+[GET] localhost:3000/MonAn/[ID_LoaiMonAn]
 
 + Lấy danh sách tất cả món ăn :
 
