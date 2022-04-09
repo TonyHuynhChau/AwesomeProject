@@ -11,6 +11,7 @@ import ListSpecial from './screen/drawerScreens/ListSpecial';
 import ListDrink from './screen/drawerScreens/ListDrink';
 import HomeScreen from './screen/drawerScreens/HomeScreen';
 import RegisterScreen from './screen/register';
+import Detail from "./screen/drawerScreens/Detail";
 const Stack = createNativeStackNavigator();
 export default App = function () {
   return (
@@ -35,6 +36,7 @@ export default App = function () {
           <Stack.Screen name="BanhNgot" component={ListNgot}/>
           <Stack.Screen name="DacBiet" component={ListSpecial}/>
           <Stack.Screen name="DoUong" component={ListDrink}/>
+          <Stack.Screen name="ChiTiet" component={Detail}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>

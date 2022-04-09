@@ -1,10 +1,51 @@
 import React, { useState} from 'react';
 import { View, Text, Image, TouchableOpacity, Button, ScrollView, StatusBar, StyleSheet} from 'react-native';
 import { Constants } from 'expo';
+import { create } from 'apisauce';
+import { useEffect } from "react/cjs/react.development";
 
 //View
-function App ()  {
- return (
+const Detail = () => {
+  const [idmonan, setidmonan] = useState('');
+  const [TenMonAn, setTenMonAn] = useState('');
+  const [NgayDang, setNgayDangMonAn] = useState('');
+  const [CongThuc, setCongThuc] = useState('');
+  const [data, setData] = useState('');
+
+  var dataToSend = {
+    _id: idmonan,
+    TenMonAn: TenMonAn,
+    NgayDang: NgayDang,
+    CongThuc: CongThuc
+
+  };
+
+  var formBody = [];
+  for (var key in dataToSend) {
+    var encodedKey = encodeURIComponent(key);
+    var encodedValue = encodeURIComponent(dataToSend[key]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+
+  const api = create({
+    baseURL: "http://192.168.1.166:3000/SearchMonAn",
+  }); 
+
+  
+  const fetchData = async () => {
+    
+    api
+    .get("/Tiramisu")
+    .then((response) => response.data)
+    .then((data) => setData(data));
+};
+  
+useEffect(() => {
+  fetchData();
+}, [])
+
+  return (
     <ScrollView>
     <View style={styles.container}>
       <View>
@@ -12,8 +53,8 @@ function App ()  {
           <Image style={[styles.image]}  source={{ uri: 'https://kenh14cdn.com/2017/2-1510316761218.jpeg', }}/>
         </View>
         <View style={{alignItems:"center", backgroundColor: '#F1F1F1', padding: 10,}}>
-          <Text style={[styles.title]}>Taco</Text>
-          <Text style={[styles.date]}>Ngày Đăng: 10/4/2000</Text>
+          <Text style={[styles.title]}>Tên món ăn: {TenMonAn}</Text>
+          <Text style={[styles.date]}>Ngày Đăng: {NgayDang}</Text>
         </View>
       </View>
       <View style={{marginTop: 10, backgroundColor: '#F1F1F1', padding: 10,}}>
@@ -30,8 +71,8 @@ function App ()  {
           "Cheese (phô mai)"</Text>
       </View>
       <View style={{marginTop: 10, backgroundColor: '#F1F1F1', padding: 10,}}>
-          <Text style={[styles.title]}>Công thức:</Text>
-          <Text style={[styles.text]}>Bước 1: Đầu tiên bạn trộn đều bột mỳ với men nở với bột ngô và một chút xíu muối rồi cho dầu ăn vào tiếp tục trộn đều.
+          <Text style={[styles.title]}>Công thức: {CongThuc}</Text>
+          {/* <Text style={[styles.text]}>Bước 1: Đầu tiên bạn trộn đều bột mỳ với men nở với bột ngô và một chút xíu muối rồi cho dầu ăn vào tiếp tục trộn đều.
 
 Bước 2: Dùng tay nhào kĩ bột với nước cho đến khi được một khối bột nhuyễn mịn và không bị dính tay là được.
 
@@ -50,7 +91,7 @@ Bước 8: Bắc chảo lên bếp, đợi chảo thật nóng rồi cho vỏ b�
 Bước 9: Nếu dùng các loại nhân như thịt hun khói hay gà rán thì các bạn cần trải một lớp sốt cà chua mỏng lên toàn bộ bề mặt bánh trước khi để nhân vào. Sau đó là phần nhân và gập đôi chiếc bánh lại.
 
 Bước 10: Cho bánh vào chảo để nướng lại một lần nữa để vỏ bánh thật vàng giòn là có thể thưởng thức ngay.
-          </Text>
+          </Text> */}
       </View>
     </View>
     </ScrollView>
@@ -79,4 +120,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 })
-export default App;
+export default Detail;
