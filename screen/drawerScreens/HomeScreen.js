@@ -278,5 +278,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 20,
   },
+  ListManButton:{
+    borderRadius: 0.5,
+  },
 });
 export default HomeScreen;

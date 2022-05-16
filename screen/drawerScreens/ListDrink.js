@@ -24,7 +24,7 @@ const ListDrink = ({navigation}) => {
     const [data ,setData] = useState("")
   
     const api = create({
-      baseURL: "http://192.168.1.166:3000/MonAn",
+      baseURL: "http://172.20.10.5:3000/MonAn",
     });
     var dataToSend = {
       _id : idmonan,
@@ -65,7 +65,7 @@ const ListDrink = ({navigation}) => {
           flexDirection: "row",
         }}
       >
-        <Image style={[styles.image]} source={item.Anh} />
+        <Image style={[styles.image]} source={{uri:item.Anh}} />
         <View style={{ flex: 1 }}>
           <Text style={[styles.title, textColor]}>{item.TenMonAn}</Text>
           <View

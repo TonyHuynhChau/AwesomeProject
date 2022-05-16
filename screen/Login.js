@@ -44,7 +44,7 @@ export default Login = ({ navigation }) => {
     }
     formBody = formBody.join("&");
 
-    fetch('http://192.168.1.28:3000/DangNhap', {
+    fetch('http://10.86.152.191:3000/DangNhap', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -95,7 +95,7 @@ export default Login = ({ navigation }) => {
             style={styles.inputs}
             onChangeText={(UserName) => setUserName(UserName)}
             placeholder="Tài khoản"
-            secureTextEntry={true}
+            secureTextEntry={false}
             autoCapitalize="none"
             keyboardType="default"
             onSubmitEditing={() =>

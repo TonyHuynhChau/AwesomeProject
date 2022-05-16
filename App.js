@@ -5,7 +5,7 @@ import { AppRegistry } from "react-native";
 import Login from './screen/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import  ListMan  from "../AwesomeProject/screen/drawerScreens/ListMan";
+import  ListMan  from "./screen/drawerScreens/ListMan";
 import ListNgot from './screen/drawerScreens/ListNgot';
 import ListSpecial from './screen/drawerScreens/ListSpecial';
 import ListDrink from './screen/drawerScreens/ListDrink';

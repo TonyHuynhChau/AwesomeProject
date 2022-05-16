@@ -12,7 +12,7 @@ import { create } from "apisauce";
 import { useEffect } from "react/cjs/react.development";
 
 const ListMan = ({navigation}) => {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState('');
   const [idmonan, setidmonan] = useState('');
   const [TenMonAn, setTenMonAn] = useState('');
   const [NgayDangMonAn, setNgayDangMonAn] = useState('');
@@ -20,7 +20,7 @@ const ListMan = ({navigation}) => {
   const [data ,setData] = useState("")
 
   const api = create({
-    baseURL: "http://192.168.1.166:3000/MonAn",
+    baseURL: "http://10.86.152.191:3000/MonAn",
   });
   var dataToSend = {
     _id : idmonan,
@@ -51,7 +51,7 @@ useEffect(() => {
 }, [])
 
   const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('ChiTiet')} style={[styles.item, backgroundColor]}>
+    <TouchableOpacity onPress={(setidmonan) => navigation.navigate('ChiTiet')} style={[styles.item, backgroundColor]}>
       <View
         style={{
           height: 150,
@@ -61,7 +61,7 @@ useEffect(() => {
           flexDirection: "row",
         }}
       >
-        <Image style={[styles.image]} source={item.Anh} />
+        <Image style={[styles.image]} source= {{uri:item.Anh}}/>
         <View style={{ flex: 1 }}>
           <Text style={[styles.title, textColor]}>{item.TenMonAn}</Text>
           <View
@@ -95,7 +95,7 @@ useEffect(() => {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item._id}
+        keyExtractor={(item) => item.TenMonAn}
         extraData={selectedId}
       />
     </View>

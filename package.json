@@ -2,6 +2,7 @@
   "name": "awesomeproject",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "URI":"http://10.86.152.191:3000",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

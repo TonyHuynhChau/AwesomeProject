@@ -61,7 +61,7 @@ useEffect(() => {
           flexDirection: "row",
         }}
       >
-        <Image style={[styles.image]} source={item.Anh} />
+        <Image style={[styles.image]} source={{uri:item.Anh}} />
         <View style={{ flex: 1 }}>
           <Text style={[styles.title, textColor]}>{item.TenMonAn}</Text>
           <View

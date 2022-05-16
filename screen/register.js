@@ -1,5 +1,3 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
 import React, { useState, createRef } from "react";
@@ -73,7 +71,7 @@ const RegisterScreen = (props) => {
     }
     formBody = formBody.join("&");
 
-    fetch('http://192.168.1.28:3000/DangKy', {
+    fetch('http://10.86.152.191:3000/DangKy', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -175,6 +173,8 @@ const RegisterScreen = (props) => {
                 placeholder="Enter Password"
                 placeholderTextColor="white"
                 ref={passwordInputRef}
+                autoCapitalize="none"
+                keyboardType="default"
                 returnKeyType="next"
                 secureTextEntry={true}
                 onSubmitEditing={() =>
@@ -206,7 +206,7 @@ const RegisterScreen = (props) => {
                 style={styles.inputStyle}
                 onChangeText={(userHoten) => setUserHoten(userHoten)}
                 underlineColorAndroid="#f000"
-                placeholder="Enter Age"
+                placeholder="Enter Name"
                 placeholderTextColor="white"
                 keyboardType="default"
                 ref={nameInputRef}
